@@ -33,3 +33,6 @@ Finally, you can create resources inside your ADF by using the button below: <br
 *There are few things you need to fill in:*
   * Azure sql database connection string - will be the source. Found in "settings -> Connection Strings" dialog. Using SQL Authentication is probably easiest. Replace "User ID" and "Password" entries with your real values or the deployment will fail.
   * HTTP URL. This is the URL for your recently created Logic app. Found in "logic app designer" -> click on "When a HTTP request is received" and copy the "HTTP Post URL"
+
+### Conclusion
+And there are the steps to create an Azure Data Factory that can pull League of Legends Data (update weekly) and load it into your SQL database. You will also be receiving an notification email whenever there are new data inside your SQL database.
