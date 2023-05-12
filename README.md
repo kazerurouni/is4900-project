@@ -20,8 +20,12 @@ First you need to create an Azure Data Factory as well a SQL database. Microsoft
 * Create Azure Data Factory (follow the "Create a data factory" section only): https://learn.microsoft.com/en-us/azure/data-factory/v1/data-factory-build-your-first-pipeline-using-editor 
 * Create SQL Database: https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal
 
-Next, you also need to deploy the logic apps that can connect to your email account. This can be done using this button bellow: <br>
+Next, you also need to deploy logic app that can connect to your email account and send out noficication emails. This can be done using this button bellow: <br>
 ![Deploy to Azure](https://aka.ms/deploytoazurebutton)
+*In order for this logic app to be deployed successfully, you need to make sure to sign in to your email.*
 
 Finally, you can create resources inside your ADF by using the button below: <br>
 ![Deploy to Azure](https://aka.ms/deploytoazurebutton)
+There are few things you need to fill in:
+  * Azure sql database connection string - will be the source. Found in "settings -> Connection Strings" dialog. Using SQL Authentication is probably easiest. Replace "User ID" and "Password" entries with your real values or the deployment will fail.
+  * HTTP URL. This is the URL for your recently created Logic app. Found in "logic app designer" -> click on "When a HTTP request is received" and copy the "HTTP Post URL"
