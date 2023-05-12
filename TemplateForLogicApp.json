@@ -1,0 +1,120 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_send_email5113_name": {
+            "defaultValue": "send-email5113",
+            "type": "String"
+        },
+        "connections_office365_externalid": {
+            "defaultValue": "/subscriptions/e7392181-4e5c-490b-995f-395051269a90/resourceGroups/re-Le/providers/Microsoft.Web/connections/office365",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_send_email5113_name')]",
+            "location": "eastus",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {
+                                    "properties": {
+                                        "color": {
+                                            "type": "string"
+                                        },
+                                        "dataFactoryName": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "pipelineName": {
+                                            "type": "string"
+                                        },
+                                        "pipelineRunId": {
+                                            "type": "string"
+                                        },
+                                        "time": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Initialize_variable": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Email Body",
+                                        "type": "string",
+                                        "value": "<hr/>\n<h2 style='color:@{triggerBody()?['color']}'>@{triggerBody()?['title']}</h2>\n<hr/>\nData Factory Name: <b>@{triggerBody()?['dataFactoryName']}</b><br/>\nPipeline Name: <b>@{triggerBody()?['pipelineName']}</b><br/>\nPipeline Run Id: <b>@{triggerBody()?['pipelineRunId']}</b><br/>\nTime: <b> @{triggerBody()?['time']}</b><br/>\n<hr/>\nInformation<br/>\n<p style='color:@{triggerBody()?['color']}'>@{triggerBody()?['message']}</p>\n<hr/>\n<p style='color:gray;'>This email was generated automatically. Please do not respond to it. Contact team at: contact@contoso.com </p>"
+                                    }
+                                ]
+                            }
+                        },
+                        "Send_an_email_(V2)": {
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "Body": "<p>@{variables('Email Body')}</p>",
+                                    "Importance": "Normal",
+                                    "Subject": "@triggerBody()?['title']",
+                                    "To": "mhle01@indianatech.net"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['office365']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/v2/Mail"
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "office365": {
+                                "connectionId": "[parameters('connections_office365_externalid')]",
+                                "connectionName": "office365",
+                                "id": "/subscriptions/e7392181-4e5c-490b-995f-395051269a90/providers/Microsoft.Web/locations/eastus/managedApis/office365"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
