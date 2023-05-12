@@ -25,7 +25,7 @@ Next, you also need to deploy logic app that can connect to your email account a
 *In order for this logic app to be deployed successfully, you need to make sure to sign in to your email.*
 
 Finally, you can create resources inside your ADF by using the button below: <br>
-![Deploy to Azure]([https://aka.ms/deploytoazurebutton](https://raw.githubusercontent.com/kazerurouni/is4900-project/main/TemplateForFactory.json)) <br>
+![Deploy to Azure](https://raw.githubusercontent.com/kazerurouni/is4900-project/main/TemplateForFactory.json) <br>
 *There are few things you need to fill in:*
   * Azure sql database connection string - will be the source. Found in "settings -> Connection Strings" dialog. Using SQL Authentication is probably easiest. Replace "User ID" and "Password" entries with your real values or the deployment will fail.
   * HTTP URL. This is the URL for your recently created Logic app. Found in "logic app designer" -> click on "When a HTTP request is received" and copy the "HTTP Post URL"
