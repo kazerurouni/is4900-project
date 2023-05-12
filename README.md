@@ -27,7 +27,7 @@ Next, you also need to deploy logic app that can connect to your email account a
 *In order for this logic app to be deployed successfully, you need to make sure to sign in to your email.*
 
 Finally, you can create resources inside your ADF by using the button below: <br>
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FrealAngryAnalytics%2Fadf%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fkazerurouni%2Fis4900-project%2Fmain%2FTemplateForFactory.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a><br>
 *There are few things you need to fill in:*
