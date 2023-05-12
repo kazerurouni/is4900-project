@@ -21,7 +21,7 @@ First you need to create an Azure Data Factory as well a SQL database. Microsoft
 * Create SQL Database: https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal
 
 Next, you also need to deploy logic app that can connect to your email account and send out noficication emails. This can be done using this button bellow: <br>
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FrealAngryAnalytics%2Fadf%2Fmaster%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fkazerurouni%2Fis4900-project%2Fmain%2FTemplateForLogicApp.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a> <br>
 *In order for this logic app to be deployed successfully, you need to make sure to sign in to your email.*
